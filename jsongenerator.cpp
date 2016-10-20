@@ -5,6 +5,10 @@
 JsonGenerator::JsonGenerator(QTreeWidget *treeWidget)
     : Generator(treeWidget)
 {
+    escs = QString("");
+
+    for (int i = 0; i < 32; ++i)
+        escs.append("\\u").append(QString::number(i, 16).rightJustified(4, '0'));
 }
 
 bool JsonGenerator::write(QIODevice *device)
@@ -27,15 +31,10 @@ bool JsonGenerator::write(QIODevice *device)
 QString JsonGenerator::escapedAttribute(const QString &text)
 {
     QString result = text;
-    QString ctrls = QString(""), escs = QString("");
     result.replace("\\", "\\\\");
     result.replace("\"", "\\\"");
-    for (int i = 0; i < 32; ++i) {
-        ctrls.append(QChar(i));
-        escs.append("\\u").append(QString::number(i, 16).rightJustified(4, '0'));
-    }
-
-    result.replace(ctrls, escs);
+    for (int i = 0; i < 32; ++i)
+        result.replace(QChar(i), escs[i]);
     result.replace(QChar(0x7f), "\\u007f");
     result.prepend("\"");
     result.append("\"");
