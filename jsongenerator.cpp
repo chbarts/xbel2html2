@@ -29,13 +29,16 @@ void JsonGenerator::generateItem(QTreeWidgetItem *item, int depth, bool end)
     if (tagName == "folder") {
         int cnt = item->childCount();
         out << indent(depth) << escapedAttribute(item->text(0)) << ": {\n";
+        out << indent(depth) << "  [\n";
         for (int i = 0; i < cnt; ++i)
             generateItem(item->child(i), depth + 1, i == (cnt - 1));
+        out << indent(depth) << "  ]\n";
         out << indent(depth) << "}";
     } else if (tagName == "bookmark") {
-        out << indent(depth) << escapedAttribute(item->text(0));
+        out << indent(depth) << "{ " << escapedAttribute(item->text(0));
         if (!item->text(1).isEmpty())
             out << ": " << escapedAttribute(item->text(1));
+        out << " }";
     } else if (tagName == "separator") {
         out << indent(depth) << "{}";
     }
