@@ -16,7 +16,7 @@ public:
 
     bool write(QIODevice *device);
 
-    ~JsonGenerator();
+    ~JsonGenerator() {}
 
 protected:
     void generateItem(QTreeWidgetItem *item, int depth, bool end);
