@@ -36,7 +36,7 @@ void JsonGenerator::generateItem(QTreeWidgetItem *item, int depth, bool end)
         out << indent(depth) << escapedAttribute(item->text(0));
         if (!item->text(1).isEmpty())
             out << ": " << escapedAttribute(item->text(1));
-    } else if (tagName == "seperator") {
+    } else if (tagName == "separator") {
         out << indent(depth) << "{}";
     }
 
