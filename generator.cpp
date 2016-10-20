@@ -13,7 +13,6 @@ QString Generator::indent(int depth)
     return QString(indentSize * depth, ' ');
 }
 
-
 QString Generator::escapedText(const QString &text)
 {
     QString result = text;
