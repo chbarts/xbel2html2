@@ -2,7 +2,8 @@ HEADERS       = mainwindow.h \
                 xbelgenerator.h \
                 xbelhandler.h \
                 htmlgenerator.h \
-    generator.h
+    generator.h \
+    jsongenerator.h
 SOURCES       = main.cpp \
                 mainwindow.cpp \
                 xbelgenerator.cpp \
