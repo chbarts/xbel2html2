@@ -19,7 +19,7 @@ public:
     ~JsonGenerator();
 
 protected:
-    void generateItem(QTreeWidgetItem *item, int depth);
+    void generateItem(QTreeWidgetItem *item, int depth, bool end);
 };
 
 #endif // JSONGENERATOR_H

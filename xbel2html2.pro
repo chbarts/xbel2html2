@@ -9,7 +9,8 @@ SOURCES       = main.cpp \
                 xbelgenerator.cpp \
                 xbelhandler.cpp \
                 htmlgenerator.cpp \
-    generator.cpp
+    generator.cpp \
+    jsongenerator.cpp
 QT           += xml widgets
 
 EXAMPLE_FILES = frank.xbel jennifer.xbel
