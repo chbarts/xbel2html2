@@ -43,6 +43,7 @@
 #include "mainwindow.h"
 #include "xbelgenerator.h"
 #include "htmlgenerator.h"
+#include "jsongenerator.h"
 #include "xbelhandler.h"
 
 MainWindow::MainWindow()
@@ -99,7 +100,7 @@ void MainWindow::saveAs()
     QString fileName =
             QFileDialog::getSaveFileName(this, tr("Save Bookmark File"),
                                          QDir::currentPath(),
-                                         tr("HTML Files (*.htm *.html *.xhtml);;XBEL Files (*.xbel *.xml)"));
+                                         tr("HTML Files (*.htm *.html *.xhtml);;JSON Files (*.json);;XBEL Files (*.xbel *.xml)"));
     if (fileName.isEmpty())
         return;
 
@@ -116,6 +117,8 @@ void MainWindow::saveAs()
 
     if (fileName.endsWith("html", Qt::CaseInsensitive) || fileName.endsWith("htm", Qt::CaseInsensitive)) {
        generator = new HtmlGenerator(treeWidget);
+    } else if (fileName.endsWith("json", Qt::CaseInsensitive)) {
+       generator = new JsonGenerator(treeWidget);
     } else {
        generator = new XbelGenerator(treeWidget);
     }
