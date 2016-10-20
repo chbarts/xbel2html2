@@ -13,7 +13,8 @@ bool JsonGenerator::write(QIODevice *device)
     out.setDevice(device);
     out.setCodec("UTF-8");
     out << "{\n";
-    out << indent(1) << "\"folderName\": \"Bookmarks\", \"contents\": [\n";
+    out << indent(1) << "\"folderName\": \"Bookmarks\",\n";
+    out << indent(1) << "\"contents\": [\n";
 
     for (int i = 0; i < cnt; ++i)
         generateItem(treeWidget->topLevelItem(i), 2, i == (cnt - 1));
@@ -28,7 +29,8 @@ void JsonGenerator::generateItem(QTreeWidgetItem *item, int depth, bool end)
     QString tagName = item->data(0, Qt::UserRole).toString();
     if (tagName == "folder") {
         int cnt = item->childCount();
-        out << indent(depth) << "{ \"folderName\": " << escapedAttribute(item->text(0)) << ", \"contents\": [\n";
+        out << indent(depth) << "{ \"folderName\": " << escapedAttribute(item->text(0)) << ",\n";
+        out << indent(depth) << "\"contents\": [\n";
         for (int i = 0; i < cnt; ++i)
             generateItem(item->child(i), depth + 1, i == (cnt - 1));
         out << indent(depth) << "  ]\n";
