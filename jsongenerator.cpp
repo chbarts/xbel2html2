@@ -25,7 +25,7 @@ bool JsonGenerator::write(QIODevice *device)
 
 void JsonGenerator::generateItem(QTreeWidgetItem *item, int depth, bool end)
 {
-    QString tagName = item->data(0, Qt::UserRole)->toString();
+    QString tagName = item->data(0, Qt::UserRole).toString();
     if (tagName == "folder") {
         int cnt = item->childCount();
         out << indent(depth) << escapedAttribute(item->text(0)) << ": {\n";
