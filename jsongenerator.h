@@ -20,6 +20,7 @@ public:
 
 protected:
     void generateItem(QTreeWidgetItem *item, int depth, bool end);
+    static QString escapedAttribute(const QString &text);
 };
 
 #endif // JSONGENERATOR_H
